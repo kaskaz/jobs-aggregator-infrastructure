@@ -1,24 +1,18 @@
 TERRAFORM_FODER_LOCAL := terraform/environments/local
+TERRAFORM_COMMON_VARS := ../common.tfvars
 
 check-type:
 ifndef type
 	${error Provide variable type=[js|go|kotlin|python]}
 endif
 
-set-service:
-ifeq ($(type), js)
-SERVICE=service-js
-else
-SERVICE=service-js
-endif
-
 # Starts local environment
-start: check-type set-service
+start: check-type
 	@echo "Initializing terraform for local environment"
 	terraform -chdir=$(TERRAFORM_FODER_LOCAL) init 
 	
 	@echo "Initializing infrastructure for local environment"
-	terraform -chdir=$(TERRAFORM_FODER_LOCAL) apply
+	terraform -chdir=$(TERRAFORM_FODER_LOCAL) apply -var='service_type=$(type)' -var-file=$(TERRAFORM_COMMON_VARS)
 
 # Stops local environment
 stop:

@@ -41,7 +41,7 @@ resource "docker_image" "service" {
   name = "service"
 
   build {
-    context = "../../../../jobs-aggregator-service-js"
+    context = var.service_folder[var.service_type]
     tag     = ["service:dev"]
   }
 }
