@@ -17,4 +17,4 @@ start: check-type
 # Stops local environment
 stop:
 	@echo "Stopping infrastructure for local environment"
-	terraform -chdir=$(TERRAFORM_FODER_LOCAL) destroy
+	terraform -chdir=$(TERRAFORM_FODER_LOCAL) destroy -var='service_type=js' -var-file=$(TERRAFORM_COMMON_VARS)
