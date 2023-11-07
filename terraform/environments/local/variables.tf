@@ -12,3 +12,12 @@ variable "service_folder" {
   type      = map
   nullable  = false
 }
+
+variable "web_demo_folder" {
+  type = string
+  nullable = false
+}
+
+variable "web_demo_polling_time" {
+  type = number
+}
