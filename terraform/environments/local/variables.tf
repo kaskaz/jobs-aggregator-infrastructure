@@ -13,6 +13,11 @@ variable "service_folder" {
   nullable  = false
 }
 
+variable "service_jobs_provider_reedcouk_api_key" {
+  type      = string
+  nullable  = false
+}
+
 variable "web_demo_folder" {
   type = string
   nullable = false

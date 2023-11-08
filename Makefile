@@ -1,3 +1,5 @@
+include .env 
+
 TERRAFORM_FODER_LOCAL := terraform/environments/local
 TERRAFORM_COMMON_VARS := ../common.tfvars
 
@@ -12,7 +14,10 @@ start: check-type
 	terraform -chdir=$(TERRAFORM_FODER_LOCAL) init 
 	
 	@echo "Initializing infrastructure for local environment"
-	terraform -chdir=$(TERRAFORM_FODER_LOCAL) apply -var='service_type=$(type)' -var-file=$(TERRAFORM_COMMON_VARS)
+	terraform -chdir=$(TERRAFORM_FODER_LOCAL) apply \
+		-var-file=$(TERRAFORM_COMMON_VARS) \
+		-var='service_type=$(type)' \
+		-var='service_jobs_provider_reedcouk_api_key=$(SERVICE_JOBS_PROVIDER_REEDCOUK_API_KEY)'		
 
 # Stops local environment
 stop:

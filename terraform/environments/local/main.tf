@@ -89,6 +89,12 @@ resource "docker_image" "service" {
 resource "docker_container" "service" {
   name = "ja-service"
   image = docker_image.service.image_id
+
+  env  = [
+    "SERVER_PORT=3000",
+    "DATABASE_URI=mongodb://${docker_container.database.name}:${docker_container.database.ports[0].external}/ja?directConnection=true&readPreference=primary",
+    "JOBS_PROVIDER_REEDCOUK_API_KEY=${var.service_jobs_provider_reedcouk_api_key}"
+  ]
   
   networks_advanced {
     name = docker_network.network.id
