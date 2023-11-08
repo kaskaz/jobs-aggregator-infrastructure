@@ -11,6 +11,11 @@ This project contains the configuration needed to execute locally and deploy the
   * jobs-aggregator-web-demo
   * jobs-aggregator-service-[js|go|kotlin|python]
 
+Besides the list above, it also requires to rename the file _.env-sample_ to _.env_ and fill the missing values.
+Here is a list of values to provide:
+  * **JOBS_PROVIDER_REEDCOUK_API_KEY** - For provider _reed.uk.co_ register [here](https://www.reed.co.uk/developers/jobseeker) to get an API key.
+
+
 ### Install Terraform
 > brew tap hashicorp/tap
 
